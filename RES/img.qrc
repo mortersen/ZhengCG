@@ -1,0 +1,41 @@
+<RCC>
+  <qresource prefix="PIC">
+    <file>goback.png</file>
+    <file>home.png</file>
+    <file>queryit.png</file>
+    <file>ZoomSmaller.png</file>
+    <file>ZoomLarger.png</file>
+    <file>download.png</file>
+    <file>print.png</file>
+    <file>READPDF.png</file>
+    <file>下载PDF.png</file>
+    <file>1.JPG</file>
+    <file>3.JPG</file>
+    <file>14.JPG</file>
+    <file>17.JPG</file>
+    <file>ReadDetail.png</file>
+    <file>Goto.png</file>
+    <file>PageDown.png</file>
+    <file>PageUp.png</file>
+    <file>Reflash.png</file>
+    <file>Lab_Wenwu.png</file>
+    <file>秦川飞影标题-1.png</file>
+    <file>Lab_Xiandai.png</file>
+    <file>Lab_Gudaipng.png</file>
+    <file>Lab_Yw.png</file>
+    <file>退出.png</file>
+    <file>档案与文物.png</file>
+    <file>古代史料.png</file>
+    <file>书本查找.png</file>
+    <file>现代研究.png</file>
+    <file>域外文献.png</file>
+    <file>search.png</file>
+    <file>背景图片.jfif</file>
+    <file>成.gif</file>
+    <file>成功竖印.gif</file>
+    <file>二码墨书标题.png</file>
+    <file>甲骨文标题.png</file>
+    <file>郑.gif</file>
+    <file>郑成功九叠篆刻.png</file>
+  </qresource>
+</RCC>
