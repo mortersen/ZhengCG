@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="PIC">
+    <file>Quit.png</file>
+    <file>about.png</file>
     <file>goback.png</file>
     <file>home.png</file>
     <file>queryit.png</file>

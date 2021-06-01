@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_searchWidget(object):
     def setupUi(self, searchWidget):
         searchWidget.setObjectName("searchWidget")
-        searchWidget.resize(560, 444)
+        searchWidget.resize(560, 446)
         self.verticalLayout = QtWidgets.QVBoxLayout(searchWidget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget_3 = QtWidgets.QWidget(searchWidget)
@@ -82,27 +82,54 @@ class Ui_searchWidget(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.groupBox)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.checkBox_YUWAI = QtWidgets.QCheckBox(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.checkBox_YUWAI.sizePolicy().hasHeightForWidth())
+        self.checkBox_YUWAI.setSizePolicy(sizePolicy)
         self.checkBox_YUWAI.setMinimumSize(QtCore.QSize(0, 26))
-        self.checkBox_YUWAI.setStyleSheet("background-color: rgb(100, 181, 246);")
+        self.checkBox_YUWAI.setStyleSheet("background-color: rgb(100, 181, 246);\n"
+"border-radius:5px;")
         self.checkBox_YUWAI.setChecked(True)
         self.checkBox_YUWAI.setTristate(False)
         self.checkBox_YUWAI.setObjectName("checkBox_YUWAI")
         self.horizontalLayout_4.addWidget(self.checkBox_YUWAI)
         self.checkBox_GUSHI = QtWidgets.QCheckBox(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.checkBox_GUSHI.sizePolicy().hasHeightForWidth())
+        self.checkBox_GUSHI.setSizePolicy(sizePolicy)
         self.checkBox_GUSHI.setMinimumSize(QtCore.QSize(0, 26))
-        self.checkBox_GUSHI.setStyleSheet("background-color: rgb(100, 181, 246);")
+        self.checkBox_GUSHI.setStyleSheet("background-color: rgb(100, 181, 246);\n"
+"border-radius:5px;\n"
+"")
         self.checkBox_GUSHI.setChecked(True)
         self.checkBox_GUSHI.setObjectName("checkBox_GUSHI")
         self.horizontalLayout_4.addWidget(self.checkBox_GUSHI)
         self.checkBox_XIANDAI = QtWidgets.QCheckBox(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.checkBox_XIANDAI.sizePolicy().hasHeightForWidth())
+        self.checkBox_XIANDAI.setSizePolicy(sizePolicy)
         self.checkBox_XIANDAI.setMinimumSize(QtCore.QSize(0, 26))
-        self.checkBox_XIANDAI.setStyleSheet("background-color: rgb(100, 181, 246);")
+        self.checkBox_XIANDAI.setStyleSheet("background-color: rgb(100, 181, 246);\n"
+"border-radius:5px;\n"
+"")
         self.checkBox_XIANDAI.setChecked(True)
         self.checkBox_XIANDAI.setObjectName("checkBox_XIANDAI")
         self.horizontalLayout_4.addWidget(self.checkBox_XIANDAI)
         self.checkBox_DANGAN = QtWidgets.QCheckBox(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.checkBox_DANGAN.sizePolicy().hasHeightForWidth())
+        self.checkBox_DANGAN.setSizePolicy(sizePolicy)
         self.checkBox_DANGAN.setMinimumSize(QtCore.QSize(0, 26))
-        self.checkBox_DANGAN.setStyleSheet("background-color: rgb(100, 181, 246);")
+        self.checkBox_DANGAN.setStyleSheet("background-color: rgb(100, 181, 246);\n"
+"border-radius:5px;\n"
+"")
         self.checkBox_DANGAN.setChecked(True)
         self.checkBox_DANGAN.setAutoRepeat(False)
         self.checkBox_DANGAN.setObjectName("checkBox_DANGAN")
@@ -122,60 +149,180 @@ class Ui_searchWidget(object):
         self.ResultWidget.setObjectName("ResultWidget")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.ResultWidget)
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem6)
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
         self.verticalLayout_5.setObjectName("verticalLayout_5")
+        spacerItem7 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem7)
+        self.btn_allDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_allDB.sizePolicy().hasHeightForWidth())
+        self.btn_allDB.setSizePolicy(sizePolicy)
+        self.btn_allDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_allDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
+        self.btn_allDB.setDefault(True)
+        self.btn_allDB.setFlat(False)
+        self.btn_allDB.setObjectName("btn_allDB")
+        self.verticalLayout_5.addWidget(self.btn_allDB)
         self.btn_bookDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_bookDB.sizePolicy().hasHeightForWidth())
+        self.btn_bookDB.setSizePolicy(sizePolicy)
         self.btn_bookDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_bookDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
         self.btn_bookDB.setDefault(True)
         self.btn_bookDB.setFlat(False)
         self.btn_bookDB.setObjectName("btn_bookDB")
         self.verticalLayout_5.addWidget(self.btn_bookDB)
         self.btn_newsPaparDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_newsPaparDB.sizePolicy().hasHeightForWidth())
+        self.btn_newsPaparDB.setSizePolicy(sizePolicy)
         self.btn_newsPaparDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_newsPaparDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
         self.btn_newsPaparDB.setDefault(True)
         self.btn_newsPaparDB.setFlat(False)
         self.btn_newsPaparDB.setObjectName("btn_newsPaparDB")
         self.verticalLayout_5.addWidget(self.btn_newsPaparDB)
         self.btn_periodDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_periodDB.sizePolicy().hasHeightForWidth())
+        self.btn_periodDB.setSizePolicy(sizePolicy)
         self.btn_periodDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_periodDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
         self.btn_periodDB.setDefault(True)
         self.btn_periodDB.setFlat(False)
         self.btn_periodDB.setObjectName("btn_periodDB")
         self.verticalLayout_5.addWidget(self.btn_periodDB)
         self.btn_ThesisDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_ThesisDB.sizePolicy().hasHeightForWidth())
+        self.btn_ThesisDB.setSizePolicy(sizePolicy)
         self.btn_ThesisDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_ThesisDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
         self.btn_ThesisDB.setDefault(True)
         self.btn_ThesisDB.setFlat(False)
         self.btn_ThesisDB.setObjectName("btn_ThesisDB")
         self.verticalLayout_5.addWidget(self.btn_ThesisDB)
         self.btn_conferencePaperDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_conferencePaperDB.sizePolicy().hasHeightForWidth())
+        self.btn_conferencePaperDB.setSizePolicy(sizePolicy)
         self.btn_conferencePaperDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_conferencePaperDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
         self.btn_conferencePaperDB.setDefault(True)
         self.btn_conferencePaperDB.setFlat(False)
         self.btn_conferencePaperDB.setObjectName("btn_conferencePaperDB")
         self.verticalLayout_5.addWidget(self.btn_conferencePaperDB)
         self.btn_reportDB = QtWidgets.QPushButton(self.ResultWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_reportDB.sizePolicy().hasHeightForWidth())
+        self.btn_reportDB.setSizePolicy(sizePolicy)
         self.btn_reportDB.setMinimumSize(QtCore.QSize(0, 32))
+        self.btn_reportDB.setStyleSheet("QPushButton{\n"
+"border-radius:10px;\n"
+"background-color:#ffaa00;\n"
+"padding:0px;\n"
+"margin:0px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#ffd6be;\n"
+"font:25 12pt \"微软雅黑 Light\";\n"
+"}")
         self.btn_reportDB.setDefault(True)
         self.btn_reportDB.setFlat(False)
         self.btn_reportDB.setObjectName("btn_reportDB")
         self.verticalLayout_5.addWidget(self.btn_reportDB)
-        self.btn_allDB = QtWidgets.QPushButton(self.ResultWidget)
-        self.btn_allDB.setMinimumSize(QtCore.QSize(0, 32))
-        self.btn_allDB.setDefault(True)
-        self.btn_allDB.setFlat(False)
-        self.btn_allDB.setObjectName("btn_allDB")
-        self.verticalLayout_5.addWidget(self.btn_allDB)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem8)
+        self.verticalLayout_5.setStretch(0, 1)
+        self.verticalLayout_5.setStretch(1, 1)
+        self.verticalLayout_5.setStretch(2, 1)
+        self.verticalLayout_5.setStretch(3, 1)
+        self.verticalLayout_5.setStretch(4, 1)
+        self.verticalLayout_5.setStretch(5, 1)
+        self.verticalLayout_5.setStretch(6, 1)
+        self.verticalLayout_5.setStretch(7, 1)
+        self.verticalLayout_5.setStretch(8, 1)
         self.horizontalLayout_7.addLayout(self.verticalLayout_5)
         self.TableViewLayout = QtWidgets.QVBoxLayout()
         self.TableViewLayout.setObjectName("TableViewLayout")
         self.horizontalLayout_7.addLayout(self.TableViewLayout)
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.horizontalLayout_7.addLayout(self.verticalLayout_4)
-        self.horizontalLayout_7.setStretch(0, 2)
-        self.horizontalLayout_7.setStretch(1, 10)
-        self.horizontalLayout_7.setStretch(2, 2)
+        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem9)
+        self.horizontalLayout_7.setStretch(0, 1)
+        self.horizontalLayout_7.setStretch(1, 3)
+        self.horizontalLayout_7.setStretch(2, 18)
+        self.horizontalLayout_7.setStretch(3, 3)
         self.horizontalLayout.addWidget(self.ResultWidget)
         self.horizontalLayout_3.addLayout(self.horizontalLayout)
         self.horizontalLayout_3.setStretch(0, 16)
@@ -185,6 +332,7 @@ class Ui_searchWidget(object):
         self.verticalLayout.setStretch(2, 8)
 
         self.retranslateUi(searchWidget)
+        self.comBox_WhatkindSearchFor.setCurrentIndex(6)
         QtCore.QMetaObject.connectSlotsByName(searchWidget)
 
     def retranslateUi(self, searchWidget):
@@ -205,13 +353,13 @@ class Ui_searchWidget(object):
         self.checkBox_GUSHI.setText(_translate("searchWidget", "古代史料库"))
         self.checkBox_XIANDAI.setText(_translate("searchWidget", "现代研究文献库"))
         self.checkBox_DANGAN.setText(_translate("searchWidget", "档案与文物库"))
-        self.btn_bookDB.setText(_translate("searchWidget", "图书"))
-        self.btn_newsPaparDB.setText(_translate("searchWidget", "报纸"))
-        self.btn_periodDB.setText(_translate("searchWidget", "期刊"))
-        self.btn_ThesisDB.setText(_translate("searchWidget", "论文"))
+        self.btn_allDB.setText(_translate("searchWidget", "全库文献"))
+        self.btn_bookDB.setText(_translate("searchWidget", "图 书"))
+        self.btn_newsPaparDB.setText(_translate("searchWidget", "报 纸"))
+        self.btn_periodDB.setText(_translate("searchWidget", "期 刊"))
+        self.btn_ThesisDB.setText(_translate("searchWidget", "论 文"))
         self.btn_conferencePaperDB.setText(_translate("searchWidget", "会议论文"))
         self.btn_reportDB.setText(_translate("searchWidget", "调研报告"))
-        self.btn_allDB.setText(_translate("searchWidget", "全库文献"))
 import RES.img_rc
 
 

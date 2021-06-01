@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication,QWidget,QMainWindow,QTabWidget,QMessageBox
+from PyQt5.QtWidgets import QApplication,QWidget,QMainWindow,QTabWidget,QMessageBox,QDialog
 
 from PyQt5.QtSql import QSqlDatabase,QSqlQuery
 from PyQt5.QtCore import pyqtSignal
@@ -9,11 +9,20 @@ from UI.UI_MainWindow import Ui_mainWindow
 from UI.UI_IndexWidget import Ui_IndexWidget
 from UI.UI_DetailWidget import Ui_DetailWidget
 from UI.UI_TableViewWidget import Ui_ViewDBWidget
+from UI.UI_AboutDialog import Ui_AboutDialog
 
 from RecordDetailView import RecordDetailView
 from SearchView import SearchWidget
 from DBTreeView import YWDBTreeWidget,DADBTreeWidget,GDDBTreeWidget,XDDBTreeWidget
 from PDFWidget import WidgetPDFStream
+
+class AboutDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_AboutDialog()
+        self.ui.setupUi(self)
+        self.ui.btn_OK.released.connect(self.close)
+
 
 #详细资料类
 class DetailWidget(QWidget):
@@ -22,6 +31,7 @@ class DetailWidget(QWidget):
         super().__init__()
         self.ui = Ui_DetailWidget()
         self.ui.setupUi(self)
+
 
 #数据表格显示类
 class TableViewWidget(QWidget):
@@ -101,7 +111,8 @@ class MainWindow(QMainWindow):
         self.ui.action_DanAnWenWu.triggered.connect(lambda :self.on_openDBView(2))
         self.ui.action_GuDaiShi.triggered.connect(lambda: self.on_openDBView(3))
         self.ui.action_XianDai.triggered.connect(lambda :self.on_openDBView(4))
-
+        self.ui.action_Close.triggered.connect(self.on_closeAllTabs)
+        self.ui.action_about.triggered.connect(self.on_About)
 
         #启动程序后，通过信号机制先载入起始页
         self.ui.action_Index.triggered.emit()
@@ -128,6 +139,15 @@ class MainWindow(QMainWindow):
         self.cenTab.addTab(self.searchTab,"检索页面")
         self.cenTab.setCurrentWidget(self.searchTab)
 
+    #工具栏，点击关闭所有标签
+    def on_closeAllTabs(self):
+        while self.cenTab.count() > 0 :
+            self.cenTab.removeTab(self.cenTab.count() - 1)
+
+    #工具栏，点击弹出关于信息窗口
+    def on_About(self):
+        about = AboutDialog()
+        about.exec_()
     #设定标签控件的关闭事件
     def on_cenTab_close(self,index):
         self.cenTab.removeTab(index)

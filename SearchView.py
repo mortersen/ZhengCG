@@ -70,6 +70,7 @@ class SearchWidget(QWidget):
         self.ui_ViewDBWidget.btn_PageDown.released.connect(self.on_btnPageDown)
         self.ui_ViewDBWidget.btn_PageUp.released.connect(self.on_btnPageUp)
         self.ui_ViewDBWidget.btn_Goto.released.connect(self.on_btnGoto)
+        self.ui_ViewDBWidget.lineEdit_PageNum.returnPressed.connect(self.on_btnGoto)
         self.tableView.doubleClicked.connect(self.on_DoubleClicked)
 
         self.ui.btn_allDB.released.connect(self.on_QueryAllDB)
