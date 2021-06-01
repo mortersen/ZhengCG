@@ -202,7 +202,7 @@ class MainWindow(QMainWindow):
         bin = self.getPDFStream(md5)
         if bin != None:
             tab = WidgetPDFStream(bin,title)
-            self.cenTab.addTab(tab, title[0:14])
+            self.cenTab.addTab(tab,"【阅读】"+title[0:12])
             self.cenTab.setCurrentWidget(tab)
         else:
             QMessageBox.information(self,"提示","找不到文档文件。")
