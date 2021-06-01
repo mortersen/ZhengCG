@@ -1,7 +1,6 @@
 import sys,tempfile
 from threading import Thread
 from multiprocessing import Process
-import time
 from queue import Queue
 from PyQt5.QtWidgets import (QWidget,QApplication,QListView,QListWidget,QLabel,
                                 QVBoxLayout,QListWidgetItem,QFileDialog,QMessageBox
