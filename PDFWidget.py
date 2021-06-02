@@ -1,4 +1,4 @@
-import sys,tempfile
+import sys,tempfile,time
 from threading import Thread
 from multiprocessing import Process
 from queue import Queue
@@ -357,6 +357,7 @@ class WidgetPDFStream(WidgetPDF):
     def onSignalOpenDocInitUI(self):
         self.nPages = self.docDoc.pageCount#总页数
         self.label_pages.setText("/" + str(self.nPages))
+        self.label_FileStatus.setText("载入中，请稍后...")
         self.listWidget.clear()  # 刷新左侧树
         def func1():
             zoom = int(30)
@@ -369,14 +370,13 @@ class WidgetPDFStream(WidgetPDF):
                 fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
                 qtimg = QImage(pix.samples, pix.width, pix.height, pix.stride, fmt)
                 self.imageQueue.put(PdfImage(i,qtimg))
-                #是否单个发射？
-                self.signal_HaveImage.emit()
-                #time.sleep(0.001)
+            self.signal_HaveImage.emit()
+
         imageThread = Thread(target=func1)
         imageThread.start()
 
     def onSignalHaveImageDisplayTree(self):
-        while self.imageQueue.qsize() != 0 :
+        while self.imageQueue.qsize() != 0:
             pdfImage = self.imageQueue.get()
             qtimg = pdfImage.getImage()
             current = pdfImage.getIndex()
@@ -398,7 +398,6 @@ class WidgetPDFStream(WidgetPDF):
             vboxLayout.addWidget(labeltxt)
             self.listWidget.addItem(listItem)
             widget.setFixedHeight(self.LISTITEM_SIZE.height())
-
             self.listWidget.setItemWidget(listItem, widget)  # 显示到listWidget中
 
         self.nCurr = 0
