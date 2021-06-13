@@ -48,6 +48,7 @@
    <addaction name="action_DanAnWenWu"/>
    <addaction name="separator"/>
    <addaction name="action_Close"/>
+   <addaction name="action_Setup"/>
    <addaction name="action_about"/>
    <addaction name="action_Quit"/>
   </widget>
@@ -136,6 +137,15 @@
    </property>
    <property name="text">
     <string>退出数据库</string>
+   </property>
+  </action>
+  <action name="action_Setup">
+   <property name="icon">
+    <iconset resource="../RES/img.qrc">
+     <normaloff>:/PIC/Setup.png</normaloff>:/PIC/Setup.png</iconset>
+   </property>
+   <property name="text">
+    <string>后台管理</string>
    </property>
   </action>
  </widget>

@@ -1,4 +1,4 @@
-import sys,tempfile,time
+import sys,tempfile
 from threading import Thread
 from multiprocessing import Process
 from queue import Queue
@@ -462,6 +462,7 @@ class WidgetPDFStreamByMultiProcess(WidgetPDFStream):
     def onSignalOpenDocInitUI(self):
         self.nPages = self.docDoc.pageCount#总页数
         self.label_pages.setText("/" + str(self.nPages))
+        self.label_FileStatus.setText("载入中，请稍后...")
         self.listWidget.clear()  # 刷新左侧树
         def func1():
             zoom = int(30)
@@ -474,10 +475,9 @@ class WidgetPDFStreamByMultiProcess(WidgetPDFStream):
                 fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
                 qtimg = QImage(pix.samples, pix.width, pix.height, pix.stride, fmt)
                 self.imageQueue.put(PdfImage(i,qtimg))
-                #是否单个发射？
-                self.signal_HaveImage.emit()
+            self.signal_HaveImage.emit()
 
-        imageProcess = Process(target=func1)
+        imageProcess = Process(target=func1,)
         imageProcess.start()
         #imageProcess.join()
 

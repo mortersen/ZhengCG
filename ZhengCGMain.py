@@ -15,6 +15,7 @@ from RecordDetailView import RecordDetailView
 from SearchView import SearchWidget
 from DBTreeView import YWDBTreeWidget,DADBTreeWidget,GDDBTreeWidget,XDDBTreeWidget
 from PDFWidget import WidgetPDFStream
+from ManageData import ManageWidget
 
 class AboutDialog(QDialog):
     def __init__(self):
@@ -103,6 +104,7 @@ class MainWindow(QMainWindow):
         self.xiandaiTab.Signal_ViewDetailRecord.connect(self.on_OpenDetailView)
         self.danganTab = DADBTreeWidget(self.DB)
         self.danganTab.Signal_ViewDetailRecord.connect(self.on_OpenDetailView)
+        self.setupTab = ManageWidget(self.DB)
 
         #工具栏，按钮动作
         self.ui.action_Search.triggered.connect(self.setSearchWidgetOpen)
@@ -112,6 +114,7 @@ class MainWindow(QMainWindow):
         self.ui.action_GuDaiShi.triggered.connect(lambda: self.on_openDBView(3))
         self.ui.action_XianDai.triggered.connect(lambda :self.on_openDBView(4))
         self.ui.action_Close.triggered.connect(self.on_closeAllTabs)
+        self.ui.action_Setup.triggered.connect(self.on_setupTabs)
         self.ui.action_about.triggered.connect(self.on_About)
 
         #启动程序后，通过信号机制先载入起始页
@@ -143,6 +146,11 @@ class MainWindow(QMainWindow):
     def on_closeAllTabs(self):
         while self.cenTab.count() > 0 :
             self.cenTab.removeTab(self.cenTab.count() - 1)
+
+    #工具栏，进入后台数据管理
+    def on_setupTabs(self):
+        self.cenTab.addTab(self.setupTab,"【文献数据管理】")
+        self.cenTab.setCurrentWidget(self.setupTab)
 
     #工具栏，点击弹出关于信息窗口
     def on_About(self):

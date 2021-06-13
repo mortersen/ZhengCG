@@ -76,6 +76,11 @@ class Ui_mainWindow(object):
         icon9.addPixmap(QtGui.QPixmap(":/PIC/Quit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Quit.setIcon(icon9)
         self.action_Quit.setObjectName("action_Quit")
+        self.action_Setup = QtWidgets.QAction(mainWindow)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/PIC/Setup.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_Setup.setIcon(icon10)
+        self.action_Setup.setObjectName("action_Setup")
         self.toolBar.addAction(self.action_Index)
         self.toolBar.addAction(self.action_Search)
         self.toolBar.addSeparator()
@@ -85,6 +90,7 @@ class Ui_mainWindow(object):
         self.toolBar.addAction(self.action_DanAnWenWu)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.action_Close)
+        self.toolBar.addAction(self.action_Setup)
         self.toolBar.addAction(self.action_about)
         self.toolBar.addAction(self.action_Quit)
 
@@ -107,6 +113,7 @@ class Ui_mainWindow(object):
         self.action_Index.setToolTip(_translate("mainWindow", "主页面"))
         self.action_about.setText(_translate("mainWindow", "关于"))
         self.action_Quit.setText(_translate("mainWindow", "退出数据库"))
+        self.action_Setup.setText(_translate("mainWindow", "后台管理"))
 import RES.img_rc
 
 

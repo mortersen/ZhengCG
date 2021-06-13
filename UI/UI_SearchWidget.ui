@@ -31,7 +31,7 @@
        </spacer>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,2,8,2,4">
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4,2,8,2,2,4">
         <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
@@ -114,8 +114,54 @@
            <string/>
           </property>
           <property name="placeholderText">
-           <string>请输入您要搜索的关键字</string>
+           <string>请输入您要搜索的关键字词</string>
           </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comBox_WhatCondition">
+          <property name="minimumSize">
+           <size>
+            <width>70</width>
+            <height>28</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-right:0px;</string>
+          </property>
+          <property name="currentIndex">
+           <number>5</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>标题</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>作者</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>关键字</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>主要内容</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>年份</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>模糊查询</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
@@ -131,6 +177,9 @@
             <width>0</width>
             <height>28</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">margin-left:0px;</string>
           </property>
           <property name="text">
            <string>搜索</string>

@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="PIC">
+    <file>addDocument.png</file>
+    <file>deleteDocument.png</file>
+    <file>editDocument.png</file>
+    <file>Setup.png</file>
     <file>Quit.png</file>
     <file>about.png</file>
     <file>goback.png</file>

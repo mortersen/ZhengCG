@@ -152,7 +152,8 @@ class SearchWidget(QWidget):
                 self.condition = ''
                 QMessageBox.information(self, "提示！", '请在输入框内填写检索的关键字词。', QMessageBox.Ok)
             else:
-                self.condition = "TITLE LIKE \'%%%s%%\' or KEYWORDS LIKE \'%%%s%%\' or ABSTRACT LIKE \'%%%s%%\' or AUTHOR LIKE \'%%%s%%\'" % (keyWords, keyWords, keyWords,keyWords)
+                self.condition = self.get_condition(keyWords)
+                print(self.condition)
                 self.executeQuery(0)
                 self.updateRecordsAndPages()
                 self.ui_ViewDBWidget.lab_CurrentPage.setText('1')
@@ -174,9 +175,62 @@ class SearchWidget(QWidget):
 
 
     #下拉框，选择检索的数据库
+    #默认0 - 图书, 1 - 期刊，2 - 报纸，3 - 论文，4 - 会议议论，5 - 调研报告
     def on_comBoxWhichView(self):
         self.indexView = self.ui.comBox_WhatkindSearchFor.currentIndex()
-        #print(viewName[self.indexView])
+        self.init_Combox_WhatCondition(self.indexView)
+    def init_Combox_WhatCondition(self,index):
+        self.ui.comBox_WhatCondition.clear()
+        if index == 0:
+            self.ui.comBox_WhatCondition.addItems(['书名','作者','关键字','主要内容','丛书名','出版社'])
+        elif index == 1:
+            self.ui.comBox_WhatCondition.addItems(['标题','作者','关键字','主要内容','期刊名'])
+        elif index == 2:
+            self.ui.comBox_WhatCondition.addItems(['标题','作者','关键字','主要内容','报纸名'])
+        elif index == 3:
+            self.ui.comBox_WhatCondition.addItems(['论文题目','作者','关键字','主要内容','导师','学校'])
+        elif index == 4:
+            self.ui.comBox_WhatCondition.addItems(['论文标题','作者','关键字','主要内容','会议地点'])
+        elif index == 5:
+            self.ui.comBox_WhatCondition.addItems(['报告题目','作者','关键字','主要内容','作者单位'])
+        elif index == 6:
+            self.ui.comBox_WhatCondition.addItems(['标题','作者','关键字','主要内容','年份','模糊查找'])
+            self.ui.comBox_WhatCondition.setCurrentIndex(5)
+
+    def get_condition(self,keyWords):
+        curIndex = self.ui.comBox_WhatCondition.currentIndex()
+        curFLIndex = self.ui.comBox_WhatkindSearchFor.currentIndex()
+        print(curIndex,curFLIndex)
+        if curFLIndex == 6 and curIndex == 5:
+            return "TITLE LIKE \'%%%s%%\' or KEYWORDS LIKE \'%%%s%%\' or ABSTRACT LIKE \'%%%s%%\' or AUTHOR LIKE \'%%%s%%\'" % (keyWords, keyWords, keyWords,keyWords)
+        if curIndex == 0:
+            return "TITLE LIKE \'%%%s%%\'" % keyWords
+        if curIndex == 1:
+            return "AUTHOR LIKE \'%%%s%%\'" % keyWords
+        if curIndex == 2:
+            return "KEYWORDS LIKE \'%%%s%%\'" % keyWords
+        if curIndex == 3:
+            return "ABSTRACT LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 0:
+            if curIndex == 4:
+                return "SERIES LIKE \'%%%s%%\'" % keyWords
+            if curIndex == 5:
+                return "SOURCE LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 1 and curIndex == 4:
+            return "SOURCE LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 2 and curIndex == 4:
+            return "SOURCE LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 3 :
+            if curIndex == 4:
+                return "TEACHER LIKE \'%%%s%%\'" % keyWords
+            if curIndex == 5:
+                return "AUTHORUNIT LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 4 and curIndex == 4:
+            return "VENUE LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 5 and curIndex == 4:
+            return  "AUTHORUNIT LIKE \'%%%s%%\'" % keyWords
+        if curFLIndex == 6 and curIndex == 4:
+            return "YEAR LIKE \'%%%s%%\'" % keyWords
 
     #执行查找,并回到第一页
     def executeQuery(self,index):
