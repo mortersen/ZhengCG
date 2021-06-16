@@ -1,4 +1,4 @@
-import sys
+import sys,hashlib
 from PyQt5.QtWidgets import QApplication,QWidget,QMainWindow,QTabWidget,QMessageBox,QDialog
 
 from PyQt5.QtSql import QSqlDatabase,QSqlQuery
@@ -10,12 +10,20 @@ from UI.UI_IndexWidget import Ui_IndexWidget
 from UI.UI_DetailWidget import Ui_DetailWidget
 from UI.UI_TableViewWidget import Ui_ViewDBWidget
 from UI.UI_AboutDialog import Ui_AboutDialog
+from UI.UI_LoadSys import Ui_LoadingDialog
 
 from RecordDetailView import RecordDetailView
 from SearchView import SearchWidget
 from DBTreeView import YWDBTreeWidget,DADBTreeWidget,GDDBTreeWidget,XDDBTreeWidget
 from PDFWidget import WidgetPDFStream
 from ManageData import ManageWidget
+
+def md5(str):
+    m = hashlib.md5()
+    m.update(str.encode("utf8"))
+    #print(m.hexdigest())
+    return m.hexdigest()
+
 
 class AboutDialog(QDialog):
     def __init__(self):
@@ -24,6 +32,39 @@ class AboutDialog(QDialog):
         self.ui.setupUi(self)
         self.ui.btn_OK.released.connect(self.close)
 
+class LoadSys(QDialog):
+    Signal_CreateSetupWidget = pyqtSignal()
+    def __init__(self,query=QSqlQuery):
+        super().__init__()
+        self.query = query
+        self.ui = Ui_LoadingDialog()
+        self.ui.setupUi(self)
+        self.ui.btn_cancel.released.connect(self.close)
+
+        self.ui.lineEdit_pwd.returnPressed.connect(self.on_sumbit)
+        self.ui.btn_submit.released.connect(self.on_sumbit)
+
+    def on_sumbit(self):
+        try:
+            pwd = self.ui.lineEdit_pwd.text()
+            if pwd == "":
+                QMessageBox.information(self,"提示","密码不能为空！",QMessageBox.Ok)
+                return None
+            else:
+                pwdMD5 = md5(pwd)
+                self.query.prepare("SELECT 1 FROM PWD WHERE MD5=:md5Code")
+                self.query.bindValue(":md5Code",pwdMD5)
+                self.query.exec()
+                self.query.last()
+                size = self.query.at() + 1
+                if size>0:
+                    self.Signal_CreateSetupWidget.emit()
+                    self.close()
+                else:
+                    QMessageBox.critical(self, "提示", "密码错误！", QMessageBox.Ok)
+                    return None
+        except Exception:
+            print(Exception.__str__())
 
 #详细资料类
 class DetailWidget(QWidget):
@@ -104,7 +145,8 @@ class MainWindow(QMainWindow):
         self.xiandaiTab.Signal_ViewDetailRecord.connect(self.on_OpenDetailView)
         self.danganTab = DADBTreeWidget(self.DB)
         self.danganTab.Signal_ViewDetailRecord.connect(self.on_OpenDetailView)
-        self.setupTab = ManageWidget(self.DB)
+        self.setupTab = None
+
 
         #工具栏，按钮动作
         self.ui.action_Search.triggered.connect(self.setSearchWidgetOpen)
@@ -149,8 +191,13 @@ class MainWindow(QMainWindow):
 
     #工具栏，进入后台数据管理
     def on_setupTabs(self):
-        self.cenTab.addTab(self.setupTab,"【文献数据管理】")
-        self.cenTab.setCurrentWidget(self.setupTab)
+        if self.setupTab == None:
+            loadSys = LoadSys(self.query)
+            loadSys.Signal_CreateSetupWidget.connect(self.on_creatSetupWidget)
+            loadSys.exec()
+        else:
+            self.cenTab.addTab(self.setupTab,"【文献数据管理】")
+            self.cenTab.setCurrentWidget(self.setupTab)
 
     #工具栏，点击弹出关于信息窗口
     def on_About(self):
@@ -223,6 +270,11 @@ class MainWindow(QMainWindow):
         self.query.exec()
         self.query.last()
         return self.query.value("filebinary")
+
+    def on_creatSetupWidget(self):
+        self.setupTab = ManageWidget(self.DB)
+        self.cenTab.addTab(self.setupTab, "【文献数据管理】")
+        self.cenTab.setCurrentWidget(self.setupTab)
 
 if __name__ == '__main__':
     mainApp = QApplication(sys.argv)

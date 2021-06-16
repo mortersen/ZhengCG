@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         AboutDialog.setObjectName("AboutDialog")
-        AboutDialog.resize(440, 160)
-        AboutDialog.setMinimumSize(QtCore.QSize(440, 160))
-        AboutDialog.setMaximumSize(QtCore.QSize(440, 160))
+        AboutDialog.resize(460, 168)
+        AboutDialog.setMinimumSize(QtCore.QSize(460, 168))
+        AboutDialog.setMaximumSize(QtCore.QSize(460, 168))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/PIC/about.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         AboutDialog.setWindowIcon(icon)
@@ -82,7 +82,7 @@ class Ui_AboutDialog(object):
     def retranslateUi(self, AboutDialog):
         _translate = QtCore.QCoreApplication.translate
         AboutDialog.setWindowTitle(_translate("AboutDialog", "关于"))
-        self.label_3.setText(_translate("AboutDialog", "郑成功文献史料数据库V1.0"))
+        self.label_3.setText(_translate("AboutDialog", "郑成功文献史料数据库V1.1(A)"))
         self.label_2.setText(_translate("AboutDialog", "目前，数据库收录了195本图书，共8555页；期刊994篇，共6021页。"))
         self.btn_OK.setText(_translate("AboutDialog", "OK"))
 import RES.img_rc

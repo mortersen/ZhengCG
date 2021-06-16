@@ -34,13 +34,15 @@ class InsertDetailWidget(QDialog):
 
     def onSaveData(self):
         try:
-            title = self.ui.lineEdit_Title.text()
+            title = self.ui.lineEdit_Title.text().strip()
             if title == "":
                 self.ui.lineEdit_Title.setFocus()
+                QMessageBox.information(self, "提示", "【标题】不能为空！", QMessageBox.Ok)
                 return
-            author = self.ui.lineEdit_Author.text()
+            author = self.ui.lineEdit_Author.text().strip()
             if author == "":
                 self.ui.lineEdit_Author.setFocus()
+                QMessageBox.information(self, "提示", "【作者】不能为空！", QMessageBox.Ok)
                 return
             source = self.ui.lineEdit_Source.text()
             year = self.ui.lineEdit_Year.text()
@@ -172,13 +174,16 @@ class UpdateDetailWidget(QDialog):
     #更新记录信息
     def onUpdateRecord(self):
         try:
-            title = self.ui.lineEdit_Title.text()
+            idd = self.curRec.value("ID")
+            title = self.ui.lineEdit_Title.text().strip()
             if title == "":
                 self.ui.lineEdit_Title.setFocus()
+                QMessageBox.information(self,"提示","【标题】不能为空！",QMessageBox.Ok)
                 return
-            author = self.ui.lineEdit_Author.text()
+            author = self.ui.lineEdit_Author.text().strip()
             if author == "":
                 self.ui.lineEdit_Author.setFocus()
+                QMessageBox.information(self, "提示", "【作者】不能为空！", QMessageBox.Ok)
                 return
             source = self.ui.lineEdit_Source.text()
             year = self.ui.lineEdit_Year.text()
@@ -195,23 +200,24 @@ class UpdateDetailWidget(QDialog):
             f1 = self.getDB(self.ui.comboBox_DB.currentIndex())
             f2 = self.getFL(self.ui.comboBox_FL.currentIndex())
             #md5 = None
-            self.sqlQuery.prepare("INSERT INTO INFO (TITLE,AUTHOR,SOURCE,YEAR,KEYWORDS,ABSTRACT,FL1ST,FL2ND,PAGES,ATPAGE,VOLUMN,PERIODS,AUTHORUNIT,SERIES,VENUE,TEACHER) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-            self.sqlQuery.addBindValue(title)
-            self.sqlQuery.addBindValue(author)
-            self.sqlQuery.addBindValue(source)
-            self.sqlQuery.addBindValue(year)
-            self.sqlQuery.addBindValue(keywords)
-            self.sqlQuery.addBindValue(abstract)
-            self.sqlQuery.addBindValue(f1)
-            self.sqlQuery.addBindValue(f2)
-            self.sqlQuery.addBindValue(pages)
-            self.sqlQuery.addBindValue(atpage)
-            self.sqlQuery.addBindValue(volumn)
-            self.sqlQuery.addBindValue(period)
-            self.sqlQuery.addBindValue(authorUnit)
-            self.sqlQuery.addBindValue(series)
-            self.sqlQuery.addBindValue(venue)
-            self.sqlQuery.addBindValue(teacher)
+            self.sqlQuery.prepare("UPDATE INFO SET TITLE=:title,AUTHOR=:author,SOURCE=:source,YEAR=:year,KEYWORDS=:keywords,ABSTRACT=:abstract,FL1ST=:f1,FL2ND=:f2,PAGES=:pages,ATPAGE=:atpage,VOLUMN=:volumn,PERIODS=:periods,AUTHORUNIT=:authorunit,SERIES=:series,VENUE=:venue,TEACHER=:teacher WHERE ID=:idd")
+            self.sqlQuery.bindValue(":title",title)
+            self.sqlQuery.bindValue(":author",author)
+            self.sqlQuery.bindValue(":source",source)
+            self.sqlQuery.bindValue(":year",year)
+            self.sqlQuery.bindValue(":keywords",keywords)
+            self.sqlQuery.bindValue(":abstract",abstract)
+            self.sqlQuery.bindValue(":f1",f1)
+            self.sqlQuery.bindValue(":f2",f2)
+            self.sqlQuery.bindValue(":pages",pages)
+            self.sqlQuery.bindValue(":atpage",atpage)
+            self.sqlQuery.bindValue(":volumn",volumn)
+            self.sqlQuery.bindValue(":period",period)
+            self.sqlQuery.bindValue(":authorunit",authorUnit)
+            self.sqlQuery.bindValue(":series",series)
+            self.sqlQuery.bindValue(":venue",venue)
+            self.sqlQuery.bindValue(":teacher",teacher)
+            self.sqlQuery.bindValue(":idd",idd)
             #self.sqlQuery.addBindValue(md5)
             self.sqlQuery.exec()
             QMessageBox.information(self,"提示","修改数据成功！",QMessageBox.Ok)

@@ -84,7 +84,7 @@
           </font>
          </property>
          <property name="text">
-          <string>郑成功文献史料数据库V1.0</string>
+          <string>郑成功文献史料数据库V1.1(A)</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
