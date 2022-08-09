@@ -136,6 +136,11 @@ class MainWindow(QMainWindow):
         #初始化检索页面
         self.searchTab = SearchWidget(self.DB)
         self.searchTab.SignalViewDetailRecord.connect(self.on_OpenDetailView)
+
+        #初始化汇编文件检索页面
+        from HMCSearchWidget import HMCSearchWidget
+        self.HMCTab = HMCSearchWidget(self)
+
         #初始化四个子库
         self.yuwaiTab = YWDBTreeWidget(self.DB)
         self.yuwaiTab.Signal_ViewDetailRecord.connect(self.on_OpenDetailView)
@@ -158,6 +163,7 @@ class MainWindow(QMainWindow):
         self.ui.action_Close.triggered.connect(self.on_closeAllTabs)
         self.ui.action_Setup.triggered.connect(self.on_setupTabs)
         self.ui.action_about.triggered.connect(self.on_About)
+        self.ui.action_HMCSearch.triggered.connect(self.on_HMCSearch)
 
         #启动程序后，通过信号机制先载入起始页
         self.ui.action_Index.triggered.emit()
@@ -183,6 +189,11 @@ class MainWindow(QMainWindow):
     def setSearchWidgetOpen(self):
         self.cenTab.addTab(self.searchTab,"检索页面")
         self.cenTab.setCurrentWidget(self.searchTab)
+
+    #工具栏，点击打开文献汇编检索
+    def on_HMCSearch(self):
+        self.cenTab.addTab(self.HMCTab,"检索-文献史料汇编")
+        self.cenTab.setCurrentWidget(self.HMCTab)
 
     #工具栏，点击关闭所有标签
     def on_closeAllTabs(self):

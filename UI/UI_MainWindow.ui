@@ -42,6 +42,8 @@
    <addaction name="action_Index"/>
    <addaction name="action_Search"/>
    <addaction name="separator"/>
+   <addaction name="action_HMCSearch"/>
+   <addaction name="separator"/>
    <addaction name="action_YuWai"/>
    <addaction name="action_GuDaiShi"/>
    <addaction name="action_XianDai"/>
@@ -51,6 +53,7 @@
    <addaction name="action_Setup"/>
    <addaction name="action_about"/>
    <addaction name="action_Quit"/>
+   <addaction name="separator"/>
   </widget>
   <action name="action_Search">
    <property name="icon">
@@ -146,6 +149,18 @@
    </property>
    <property name="text">
     <string>后台管理</string>
+   </property>
+  </action>
+  <action name="action_HMCSearch">
+   <property name="icon">
+    <iconset resource="../RES/img.qrc">
+     <normaloff>:/PIC/DocumentSearch.png</normaloff>:/PIC/DocumentSearch.png</iconset>
+   </property>
+   <property name="text">
+    <string>汇编检索</string>
+   </property>
+   <property name="toolTip">
+    <string>文献史料汇编检索</string>
    </property>
   </action>
  </widget>

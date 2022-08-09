@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CustomItem</class>
+ <widget class="QWidget" name="CustomItem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>510</width>
+    <height>188</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="toolTip">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;双击阅读&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_TitleName">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 85, 0);</string>
+       </property>
+       <property name="text">
+        <string>&gt;&gt;&gt;邹维琏&lt;&lt;&lt;</string>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_Num">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_MainText">
+     <property name="cursor">
+      <cursorShape>IBeamCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>邹维琏，字德辉，江西新昌人。万历三十五年进士。授延平推官。耿介有大节。……崇祯初，起南京通政参议，就迁太仆少卿，疏陈卜相、久任、纳言、议谥、筹兵五事。五年二月擢右佥都御史，代熊文灿巡抚福建。海寇刘香乱，遣游击郑芝龙击破之。海外红夷据彭湖，挟互市，后徙台湾，渐泊厦门。维琏屡檄芝龙防遏之，不听。明年夏，芝龙剿贼福宁，红夷乘间袭陷厦门城，大掠。维琏急发兵水陆进，芝龙亦驰援，焚其三舟，官军伤亦众。寇乃泛舟大洋，转掠青港、荆屿、石湾。诸将御之铜山，连战数日，始败去。维琏在事二年，劳绩甚着。会当国者温体仁辈雅忌维琏，而闽人宦京师者腾谤于朝，竟坐是罢官。八年春，叙却贼功，诏许起用。旋召拜兵部右侍郎，遘疾不赴，卒于家。……</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_BookName">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 85, 255);</string>
+       </property>
+       <property name="text">
+        <string>《明史》</string>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_Volume">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 85, 255);</string>
+         </property>
+         <property name="text">
+          <string>23册</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_FileLabel">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 85, 255);</string>
+         </property>
+         <property name="text">
+          <string>卷二百三十五 列传第一百二十三</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_Pages">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 85, 255);</string>
+         </property>
+         <property name="text">
+          <string>页码：6137-6138</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

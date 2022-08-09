@@ -84,7 +84,7 @@
           </font>
          </property>
          <property name="text">
-          <string>郑成功文献史料数据库V1.1(A)</string>
+          <string>郑成功文献史料数据库V1.2(A)</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -100,7 +100,7 @@
           </font>
          </property>
          <property name="text">
-          <string>目前，数据库收录了195本图书，共8555页；期刊994篇，共6021页。</string>
+          <string>目前，数据库收录了195本图书，共8555页；期刊994篇，共6021页。收录文献史料汇编数据5522份。</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignJustify|Qt::AlignVCenter</set>

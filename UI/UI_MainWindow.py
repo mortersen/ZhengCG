@@ -81,8 +81,15 @@ class Ui_mainWindow(object):
         icon10.addPixmap(QtGui.QPixmap(":/PIC/Setup.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Setup.setIcon(icon10)
         self.action_Setup.setObjectName("action_Setup")
+        self.action_HMCSearch = QtWidgets.QAction(mainWindow)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(":/PIC/DocumentSearch.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_HMCSearch.setIcon(icon11)
+        self.action_HMCSearch.setObjectName("action_HMCSearch")
         self.toolBar.addAction(self.action_Index)
         self.toolBar.addAction(self.action_Search)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.action_HMCSearch)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.action_YuWai)
         self.toolBar.addAction(self.action_GuDaiShi)
@@ -93,6 +100,7 @@ class Ui_mainWindow(object):
         self.toolBar.addAction(self.action_Setup)
         self.toolBar.addAction(self.action_about)
         self.toolBar.addAction(self.action_Quit)
+        self.toolBar.addSeparator()
 
         self.retranslateUi(mainWindow)
         self.action_Quit.triggered.connect(mainWindow.close)
@@ -114,6 +122,8 @@ class Ui_mainWindow(object):
         self.action_about.setText(_translate("mainWindow", "关于"))
         self.action_Quit.setText(_translate("mainWindow", "退出数据库"))
         self.action_Setup.setText(_translate("mainWindow", "后台管理"))
+        self.action_HMCSearch.setText(_translate("mainWindow", "汇编检索"))
+        self.action_HMCSearch.setToolTip(_translate("mainWindow", "文献史料汇编检索"))
 import RES.img_rc
 
 
