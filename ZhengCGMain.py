@@ -175,7 +175,7 @@ class MainWindow(QMainWindow):
         try:
             self.DB = QSqlDatabase.addDatabase("QSQLITE")
             self.DB.setDatabaseName("DB/ZhengCG.db")
-            print("Open DB success!")
+           #print("Open DB success!")
         except Exception as e:
             QMessageBox.critical(self, "错误", "数据库驱动错误")
             print(e)
@@ -268,7 +268,7 @@ class MainWindow(QMainWindow):
         bin = self.getPDFStream(md5)
         if bin != None:
             tab = WidgetPDFStream(bin,title)
-            self.cenTab.addTab(tab,"【阅读】"+title[0:12])
+            self.cenTab.addTab(tab,"【阅】"+title[0:12])
             self.cenTab.setCurrentWidget(tab)
         else:
             QMessageBox.information(self,"提示","找不到文档文件。")
