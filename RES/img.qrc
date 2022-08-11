@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="PIC">
+    <file>Catalog.png</file>
     <file>DocumentSearch.png</file>
     <file>检索库标题.png</file>
     <file>addDocument.png</file>

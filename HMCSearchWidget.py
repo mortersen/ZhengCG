@@ -11,6 +11,8 @@ from UI.UI_HMCSearchWidget import Ui_HMCSearch
 from PDFWidget import WidgetPDFStream
 
 records = 10
+upTag = '<span style=" font-weight:600; color:#ff00ff;">'
+downTag = '</span>'
 
 class HMCSearchWidget(QWidget):
     #自定义信号，获得从数据库读取了数据
@@ -97,20 +99,23 @@ class HMCSearchWidget(QWidget):
 
     #将内存中数据更新UI
     def onSignalHaveDBDataDisplayList(self):
-        self.md5List = []
-        self.ui.listWidget.clear()
-        heigth = self.ui.listWidget.height() // 2
-        width = self.ui.listWidget.width() - 30
-        while self.imageQueue.qsize() != 0:
-            tempDict = self.imageQueue.get()
-            self.md5List.append(tempDict['md5'])
-            widget = CustomItem()
-            widget.AssignItem(tempDict['title'],tempDict['maintext'],tempDict['book'],tempDict['volume'],tempDict['filefabel'],tempDict['pages'],tempDict['index'])
-            item = QListWidgetItem()
-            item.setSizeHint(QSize(width, heigth))
-            self.ui.listWidget.addItem(item)
-            self.ui.listWidget.setItemWidget(item, widget)
-
+        try:
+            self.md5List = []
+            self.ui.listWidget.clear()
+            heigth = self.ui.listWidget.height() // 2
+            width = self.ui.listWidget.width() - 30
+            while self.imageQueue.qsize() != 0:
+                tempDict = self.imageQueue.get()
+                self.md5List.append(tempDict['md5'])
+                widget = CustomItem()
+                widget.ui.pbt_readPDF.clicked.connect(self.on_openPdftoRead)
+                widget.AssignItem(tempDict['title'],tempDict['maintext'],tempDict['book'],tempDict['volume'],tempDict['filefabel'],tempDict['pages'],tempDict['index'],self.keyWords)
+                item = QListWidgetItem()
+                item.setSizeHint(QSize(width, heigth))
+                self.ui.listWidget.addItem(item)
+                self.ui.listWidget.setItemWidget(item, widget)
+        except Exception:
+            print(Exception.__str__())
 
 
     #生成按页码的查询语句
@@ -169,16 +174,19 @@ class HMCSearchWidget(QWidget):
 
     #槽，响应双击打开文档阅读
     def on_openPdftoRead(self):
-        md5 = self.md5List[self.ui.listWidget.currentRow()]
-        bin = self.getPDFStream(md5)
-        book ,title = self.getPDFTitle(md5)
-        if bin != None:
-            tab = WidgetPDFStream(bin,book + '('+title+')')
-            self.mainWindow.cenTab.addTab(tab,"【阅】"+title[0:12])
-            self.mainWindow.cenTab.setCurrentWidget(tab)
-        else:
-            QMessageBox.information(self,"提示","找不到文档文件。")
-
+        try:
+            index = int(self.sender().parent().ui.label_Num.text())%10 - 1
+            md5 = self.md5List[index]
+            bin = self.getPDFStream(md5)
+            book ,title = self.getPDFTitle(md5)
+            if bin != None:
+                tab = WidgetPDFStream(bin,book + '('+title+')')
+                self.mainWindow.cenTab.addTab(tab,"【阅】"+book[0:12])
+                self.mainWindow.cenTab.setCurrentWidget(tab)
+            else:
+                QMessageBox.information(self,"提示","找不到文档文件。")
+        except Exception:
+            print(Exception.__str__())
     # 查询，辅组返回PDF流，提供阅读PDF函数使用
     def getPDFStream(self, md5):
         sqQuery = "SELECT FILEBINARY FROM HMCFILE WHERE MD5=?"
@@ -206,11 +214,12 @@ class CustomItem(QWidget):
         self.ui.setupUi(self)
 
     #赋值构造Item
-    def AssignItem(self,title=str, mainText=str, book=str, volume=str, file=str, pages=str, num=int):
+    def AssignItem(self,title=str, mainText=str, book=str, volume=str, file=str, pages=str, num=int,keyWords=str):
         self.ui.label_TitleName.setText(">>>" + title.strip() + '<<<')
         self.ui.label_Num.setText(str(num))
         self.ui.label_MainText.adjustSize()
-        self.ui.label_MainText.setText(mainText)
+        targetStr = upTag + keyWords + downTag
+        self.ui.label_MainText.setText(mainText.replace(keyWords,targetStr))
 
         self.ui.label_BookName.setText('《' + book.strip() + '》')
         self.ui.label_FileLabel.setText(file)

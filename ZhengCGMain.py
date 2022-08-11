@@ -11,6 +11,7 @@ from UI.UI_DetailWidget import Ui_DetailWidget
 from UI.UI_TableViewWidget import Ui_ViewDBWidget
 from UI.UI_AboutDialog import Ui_AboutDialog
 from UI.UI_LoadSys import Ui_LoadingDialog
+from UI.UI_Catalog import Ui_Catalog
 
 from RecordDetailView import RecordDetailView
 from SearchView import SearchWidget
@@ -23,6 +24,12 @@ def md5(str):
     m.update(str.encode("utf8"))
     #print(m.hexdigest())
     return m.hexdigest()
+
+class CatalogWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Catalog()
+        self.ui.setupUi(self)
 
 
 class AboutDialog(QDialog):
@@ -141,6 +148,9 @@ class MainWindow(QMainWindow):
         from HMCSearchWidget import HMCSearchWidget
         self.HMCTab = HMCSearchWidget(self)
 
+        #初始话汇编文档目录页面
+        self.CatalogTab = CatalogWidget()
+
         #初始化四个子库
         self.yuwaiTab = YWDBTreeWidget(self.DB)
         self.yuwaiTab.Signal_ViewDetailRecord.connect(self.on_OpenDetailView)
@@ -164,6 +174,7 @@ class MainWindow(QMainWindow):
         self.ui.action_Setup.triggered.connect(self.on_setupTabs)
         self.ui.action_about.triggered.connect(self.on_About)
         self.ui.action_HMCSearch.triggered.connect(self.on_HMCSearch)
+        self.ui.action_Catalog.triggered.connect(self.on_Catalog)
 
         #启动程序后，通过信号机制先载入起始页
         self.ui.action_Index.triggered.emit()
@@ -192,8 +203,13 @@ class MainWindow(QMainWindow):
 
     #工具栏，点击打开文献汇编检索
     def on_HMCSearch(self):
-        self.cenTab.addTab(self.HMCTab,"检索-文献史料汇编")
+        self.cenTab.addTab(self.HMCTab,"检索-史料文献汇编")
         self.cenTab.setCurrentWidget(self.HMCTab)
+
+    #工具栏，点击打开史料文献汇编
+    def on_Catalog(self):
+        self.cenTab.addTab(self.CatalogTab,"浏览-史料文献汇编")
+        self.cenTab.setCurrentWidget(self.CatalogTab)
 
     #工具栏，点击关闭所有标签
     def on_closeAllTabs(self):
