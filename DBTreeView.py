@@ -290,7 +290,7 @@ class DADBTreeWidget(DBTreeWidget):
             self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'DAWW\'"
         elif index == 1:
             self.query = "SELECT Title,author,Source,year,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'DAWW\' and FL2ND = \'TS\'"
-            self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'YWWX\'and FL2ND = \'QK\'"
+            self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'YWWX\'and FL2ND = \'TS\'"
         elif index == 2:
             self.query = "SELECT Title,author,Source,year,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'DAWW\' and FL2ND = \'QK\'"
             self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'DAWW\' AND FL2ND =\'QK\'"
@@ -312,7 +312,7 @@ class GDDBTreeWidget(DBTreeWidget):
     def __init__(self, DB):
         super().__init__(DB)
 
-        self.query = "SELECT Title,author,Source,year,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\'"
+        self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\'"
         self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\'"
         # 计算总记录数
         self.totoalRecord = self.caculateTotoalRecord()
@@ -328,21 +328,29 @@ class GDDBTreeWidget(DBTreeWidget):
         self.tableView.setAlternatingRowColors(True)
         self.tableView.verticalHeader().setDefaultSectionSize(40)
         self.tableView.setColumnWidth(0, 400)
-        self.tableView.setColumnWidth(5, 400)
-        self.tableView.setColumnHidden(6, True)
-        self.tableView.setColumnHidden(7,True)
+        self.tableView.setColumnWidth(7, 400)
+        self.tableView.setColumnHidden(8, True)
+        self.tableView.setColumnHidden(9,True)
 
         self.qryModel.setHeaderData(0, Qt.Horizontal, "标题")
         self.qryModel.setHeaderData(1, Qt.Horizontal, "作者")
         self.qryModel.setHeaderData(2, Qt.Horizontal, "文献来源")
-        self.qryModel.setHeaderData(3, Qt.Horizontal, "年份")
-        self.qryModel.setHeaderData(4, Qt.Horizontal, "关键字")
-        self.qryModel.setHeaderData(5, Qt.Horizontal, "内容摘要")
+        self.qryModel.setHeaderData(3, Qt.Horizontal, "丛书名")
+        self.qryModel.setHeaderData(4, Qt.Horizontal, "卷")
+        self.qryModel.setHeaderData(5, Qt.Horizontal, "册")
+        self.qryModel.setHeaderData(6, Qt.Horizontal, "关键字")
+        self.qryModel.setHeaderData(7, Qt.Horizontal, "内容摘要")
 
     def initTree(self):
         root = QTreeWidgetItem(self.ui.tree)
         item0 = QTreeWidgetItem(root)
         item1 = QTreeWidgetItem(root)
+        item0_ZS = QTreeWidgetItem(item0)
+        item0_BNS = QTreeWidgetItem(item0)
+        item0_DZL = QTreeWidgetItem(item0)
+        item0_BJSW = QTreeWidgetItem(item0)
+        item0_MJWX = QTreeWidgetItem(item0)
+        item0_QT = QTreeWidgetItem(item0)
         self.ui.tree.header().setVisible(False)
         self.ui.tree.setColumnHidden(1, True)
         root.setText(0, "古代史料数据库")
@@ -354,10 +362,24 @@ class GDDBTreeWidget(DBTreeWidget):
         font14.setItalic(False)
         font14.setWeight(50)
         root.setFont(0, font14)
+
         item0.setText(0, "图书")
         item0.setText(1, "1")
         item1.setText(0, "期刊")
         item1.setText(1, "2")
+
+        item0_ZS.setText(0, "正史类")
+        item0_ZS.setText(1, "3")
+        item0_BNS.setText(0, "编年史类")
+        item0_BNS.setText(1, "4")
+        item0_DZL.setText(0, "地志类")
+        item0_DZL.setText(1, "5")
+        item0_BJSW.setText(0, "笔记诗文集类")
+        item0_BJSW.setText(1, "6")
+        item0_MJWX.setText(0, "民间文献类")
+        item0_MJWX.setText(1, "7")
+        item0_QT.setText(0, "其他")
+        item0_QT.setText(1, "8")
 
         font12 = QFont()
         font12.setFamily("华文楷体")
@@ -368,18 +390,44 @@ class GDDBTreeWidget(DBTreeWidget):
         item0.setFont(0, font12)
         item1.setFont(0, font12)
 
+        item0_ZS.setFont(0,font12)
+        item0_BNS.setFont(0, font12)
+        item0_DZL.setFont(0, font12)
+        item0_BJSW.setFont(0, font12)
+        item0_MJWX.setFont(0, font12)
+        item0_QT.setFont(0, font12)
+
+
     # 多态，槽函数，处理选择字库操作
     def updateDBView(self):
             index = int(self.ui.tree.currentItem().text(1))
             if index == 0:
-                self.query = "SELECT Title,author,Source,year,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\'"
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\'"
                 self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\'"
             elif index == 1:
-                self.query = "SELECT Title,author,Source,year,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' and FL2ND = \'TS\'"
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' and FL2ND = \'TS\'"
                 self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\'and FL2ND = \'TS\'"
             elif index == 2:
-                self.query = "SELECT Title,author,Source,year,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' and FL2ND = \'QK\'"
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' and FL2ND = \'QK\'"
                 self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'QK\'"
+            elif index == 3:
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'ZS\'"
+                self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'ZS\'"
+            elif index == 4:
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'BNS\'"
+                self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'BNS\'"
+            elif index == 5:
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'DZL\'"
+                self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'DZL\'"
+            elif index == 6:
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'BJSW\'"
+                self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'BJSW\'"
+            elif index == 7:
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'MJWX\'"
+                self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'MJWX\'"
+            elif index == 8:
+                self.query = "SELECT Title,author,Source,series,volumn,periods,keywords,abstract,md5,id FROM INFO WHERE FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'QT\'"
+                self.queryTotoalRecord = "SELECT 1 from info where FL1ST = \'GDSL\' AND FL2ND =\'TS\' AND FL3RD =\'QT\'"
             self.currentPage = 0
             self.totoalRecord = self.caculateTotoalRecord()
             self.ui_ViewDBWidget.lab_TotoalRecord.setText(str(self.totoalRecord))
