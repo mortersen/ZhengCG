@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="PIC">
+    <file>11.JPG</file>
+    <file>Lab_Gudaipng.png</file>
+    <file>阅读.png</file>
+    <file>download2.png</file>
+    <file>阅读文档.png</file>
     <file>Catalog.png</file>
     <file>DocumentSearch.png</file>
     <file>检索库标题.png</file>

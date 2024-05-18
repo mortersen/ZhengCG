@@ -424,7 +424,7 @@ class Ui_RecordDetailView(object):
         self.label_11.setText(_translate("RecordDetailView", "年份："))
         self.label_ss.setText(_translate("RecordDetailView", "页码范围："))
         self.label_7.setText(_translate("RecordDetailView", "页数："))
-        self.label_9.setText(_translate("RecordDetailView", "期："))
+        self.label_9.setText(_translate("RecordDetailView", "期（册）："))
         self.label_10.setText(_translate("RecordDetailView", "卷："))
         self.label_12.setText(_translate("RecordDetailView", "分类："))
 import RES.img_rc

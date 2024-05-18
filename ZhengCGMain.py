@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication,QWidget,QMainWindow,QTabWidget,QMessage
 
 from PyQt5.QtSql import QSqlDatabase,QSqlQuery
 from PyQt5.QtCore import pyqtSignal
-
+from PyQt5.QtGui import QIcon
 
 from UI.UI_MainWindow import Ui_mainWindow
 from UI.UI_IndexWidget import Ui_IndexWidget
@@ -18,6 +18,8 @@ from SearchView import SearchWidget
 from DBTreeView import YWDBTreeWidget,DADBTreeWidget,GDDBTreeWidget,XDDBTreeWidget
 from PDFWidget import WidgetPDFStream
 from ManageData import ManageWidget
+
+
 
 def md5(str):
     m = hashlib.md5()
@@ -105,6 +107,7 @@ class IndexWidget(QWidget):
         self.ui.btn_DanganDB.released.connect(self.on_sendSignalOpenDA)
         self.ui.btn_GudaiDB.released.connect(self.on_sendSignalOpenGD)
         self.ui.btn_XiandaiDB.released.connect(self.on_sendSignalOpenXD)
+        self.ui.btn_HCMDB.released.connect(self.on_sendSignalOpenHCMDB)
 
     def on_sendSignalOpenYW(self):
         self.Signal_OpebDB.emit(1)
@@ -117,6 +120,9 @@ class IndexWidget(QWidget):
 
     def on_sendSignalOpenXD(self):
         self.Signal_OpebDB.emit(4)
+
+    def on_sendSignalOpenHCMDB(self):
+        self.Signal_OpebDB.emit(5)
 
 #主体窗口类
 class MainWindow(QMainWindow):
@@ -149,7 +155,8 @@ class MainWindow(QMainWindow):
         self.HMCTab = HMCSearchWidget(self)
 
         #初始话汇编文档目录页面
-        self.CatalogTab = CatalogWidget()
+        from HMCListWidget import HMCListWidget
+        self.CatalogTab = HMCListWidget(self,self.DB)
 
         #初始化四个子库
         self.yuwaiTab = YWDBTreeWidget(self.DB)
@@ -193,22 +200,22 @@ class MainWindow(QMainWindow):
 
     #工具栏，点击打开主页面
     def setIndexWidget(self):
-        self.cenTab.addTab(self.indexTab,"主页面")
+        self.cenTab.addTab(self.indexTab,QIcon(":/PIC/home.png"),"主页面")
         self.cenTab.setCurrentWidget(self.indexTab)
 
     #工具栏，点击打开搜索页
     def setSearchWidgetOpen(self):
-        self.cenTab.addTab(self.searchTab,"检索页面")
+        self.cenTab.addTab(self.searchTab,QIcon(":/PIC/书本查找.png"),"检索页面")
         self.cenTab.setCurrentWidget(self.searchTab)
 
     #工具栏，点击打开文献汇编检索
     def on_HMCSearch(self):
-        self.cenTab.addTab(self.HMCTab,"检索-史料文献汇编")
+        self.cenTab.addTab(self.HMCTab,QIcon(":/PIC/DocumentSearch.png"),"检索-史料文献汇编")
         self.cenTab.setCurrentWidget(self.HMCTab)
 
     #工具栏，点击打开史料文献汇编
     def on_Catalog(self):
-        self.cenTab.addTab(self.CatalogTab,"浏览-史料文献汇编")
+        self.cenTab.addTab(self.CatalogTab,QIcon(":/PIC/Catalog.png"),"浏览-史料文献汇编")
         self.cenTab.setCurrentWidget(self.CatalogTab)
 
     #工具栏，点击关闭所有标签
@@ -238,20 +245,22 @@ class MainWindow(QMainWindow):
     def on_openDBView(self,int_index):
         if int_index == 1:
             DBName = "域外文献库"
-            self.cenTab.addTab(self.yuwaiTab, DBName)
+            self.cenTab.addTab(self.yuwaiTab,QIcon(":/PIC/域外文献.png"), DBName)
             self.cenTab.setCurrentWidget(self.yuwaiTab)
         elif int_index == 2:
             DBName =  "档案与文物数据库"
-            self.cenTab.addTab(self.danganTab, DBName)
+            self.cenTab.addTab(self.danganTab,QIcon(":/PIC/档案与文物.png"), DBName)
             self.cenTab.setCurrentWidget(self.danganTab)
         elif int_index == 3:
             DBName =  "古代史料数据库"
-            self.cenTab.addTab(self.gudaiTab, DBName)
+            self.cenTab.addTab(self.gudaiTab, QIcon(":/PIC/古代史料.png"),DBName)
             self.cenTab.setCurrentWidget(self.gudaiTab)
         elif int_index == 4:
             DBName = "现代研究文献数据库"
-            self.cenTab.addTab(self.xiandaiTab, DBName)
+            self.cenTab.addTab(self.xiandaiTab,QIcon(":/PIC/现代研究.png"), DBName)
             self.cenTab.setCurrentWidget(self.xiandaiTab)
+        elif int_index == 5:
+            self.ui.action_Catalog.triggered.emit()
         else:
             pass
 
@@ -275,7 +284,7 @@ class MainWindow(QMainWindow):
         tab.signal_Home.connect(self.setIndexWidget)
         tab.signal_goBackDB.connect(self.goWhichDB)
         tab.signal_Query.connect(self.setSearchWidgetOpen)
-        self.cenTab.addTab(tab,title[0:14])
+        self.cenTab.addTab(tab,QIcon(":/PIC/ReadDetail.png"),title[0:12])
         self.cenTab.setCurrentWidget(tab)
 
     #阅读PDF
@@ -284,7 +293,7 @@ class MainWindow(QMainWindow):
         bin = self.getPDFStream(md5)
         if bin != None:
             tab = WidgetPDFStream(bin,title)
-            self.cenTab.addTab(tab,"【阅】"+title[0:12])
+            self.cenTab.addTab(tab,QIcon(":/PIC/阅读.png"),title[0:12])
             self.cenTab.setCurrentWidget(tab)
         else:
             QMessageBox.information(self,"提示","找不到文档文件。")
@@ -300,7 +309,7 @@ class MainWindow(QMainWindow):
 
     def on_creatSetupWidget(self):
         self.setupTab = ManageWidget(self.DB)
-        self.cenTab.addTab(self.setupTab, "【文献数据管理】")
+        self.cenTab.addTab(self.setupTab,QIcon(":/PIC/Setup.png"), "【文献数据管理】")
         self.cenTab.setCurrentWidget(self.setupTab)
 
 if __name__ == '__main__':

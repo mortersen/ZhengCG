@@ -625,7 +625,7 @@
               </font>
              </property>
              <property name="text">
-              <string>期：</string>
+              <string>期（册）：</string>
              </property>
             </widget>
            </item>

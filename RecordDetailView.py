@@ -64,6 +64,9 @@ class RecordDetailView(QWidget):
             self.UI.label_AuthorUnit.setText(self.query.value("AUTHORUNIT"))
             self.UI.label_ATpage.setText(self.query.value("PAGES"))
             self.UI.label_Pages.setText(self.query.value("ATPAGE"))
+            self.UI.label_Periods.setText(self.query.value("PERIODS"))
+            self.UI.label_Volumn.setText(self.query.value("VOLUMN"))
+
 
         except Exception:
             print(Exception.__str__())
