@@ -1,7 +1,7 @@
 import os
 from threading import Thread
 from PyQt5.QtWidgets import QWidget,QAbstractItemView,QMessageBox,QDataWidgetMapper,QFileDialog
-from PyQt5.QtSql import QSqlQuery,QSqlQueryModel
+from PyQt5.QtSql import QSqlQueryModel
 from PyQt5.QtCore import Qt,pyqtSignal
 from PyQt5.QtGui import QIcon
 from PyQt5.QtSql import QSqlDatabase,QSqlQuery
