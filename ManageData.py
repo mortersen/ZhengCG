@@ -66,8 +66,11 @@ class InsertDetailWidget(QDialog):
                 fileBinary = filePDF.read()
                 md5 = (hashlib.md5(fileBinary).hexdigest())
                 filePDF.close()
-                self.cur.execute("INSERT INTO INFOFILE VALUES(?,?,?)",(None,md5,fileBinary))
-                self.conn.commit()
+                bb = self.cur.execute("SELECT COUNT(*) FROM INFOFILE WHERE MD5 like \'%%%s%%\'" % md5)
+                fileCount = bb.fetchone()[0]
+                if fileCount == 0:
+                    self.cur.execute("INSERT INTO INFOFILE VALUES(?,?,?)",(None,md5,fileBinary))
+                    self.conn.commit()
             self.sqlQuery.prepare("INSERT INTO INFO (TITLE,AUTHOR,SOURCE,YEAR,KEYWORDS,ABSTRACT,FL1ST,FL2ND,PAGES,ATPAGE,VOLUMN,PERIODS,AUTHORUNIT,SERIES,VENUE,TEACHER,MD5) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
             self.sqlQuery.addBindValue(title)
             self.sqlQuery.addBindValue(author)

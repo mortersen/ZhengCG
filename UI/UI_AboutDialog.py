@@ -82,8 +82,8 @@ class Ui_AboutDialog(object):
     def retranslateUi(self, AboutDialog):
         _translate = QtCore.QCoreApplication.translate
         AboutDialog.setWindowTitle(_translate("AboutDialog", "关于"))
-        self.label_3.setText(_translate("AboutDialog", "郑成功文献史料数据库V2.0(A)"))
-        self.label_2.setText(_translate("AboutDialog", "目前，数据库收录了473本图书，共170122页；期刊994篇，共6021页；报纸、学位或会议论文和调研报告等311篇。收录文献史料汇编数据5526份。"))
+        self.label_3.setText(_translate("AboutDialog", "郑成功文献史料数据库V2.1(A)"))
+        self.label_2.setText(_translate("AboutDialog", "目前，数据库收录了492本图书，共179472页；期刊994篇，共6021页；报纸、学位或会议论文和调研报告等311篇。收录文献史料汇编数据5526份。"))
         self.btn_OK.setText(_translate("AboutDialog", "OK"))
 import RES.img_rc
 
